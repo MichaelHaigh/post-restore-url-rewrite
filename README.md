@@ -68,8 +68,9 @@ $ actoolkit list scripts
 
 ```text
 $ actoolkit create hook 60c6990a-9d99-41a4-a7a5-3f8e19dff94e post-restore-image-rewrite \
-    02def8ea-acab-4216-8236-132d42ae0dda -o post-restore -c alpine-astra-hook
-{"metadata": {"labels": [], "creationTimestamp": "2023-01-27T15:53:10Z", "modificationTimestamp": "2023-01-27T15:53:10Z", "createdBy": "8146d293-d897-4e16-ab10-8dca934637ab"}, "type": "application/astra-executionHook", "version": "1.2", "id": "84e4fb3f-da86-4ea2-8c7a-08ccdfda6222", "name": "post-restore-image-rewrite", "hookType": "custom", "matchingCriteria": [{"type": "containerName", "value": "alpine-astra-hook"}], "action": "restore", "stage": "post", "hookSourceID": "02def8ea-acab-4216-8236-132d42ae0dda", "arguments": [], "appID": "60c6990a-9d99-41a4-a7a5-3f8e19dff94e", "enabled": "true"}
+    02def8ea-acab-4216-8236-132d42ae0dda -o post-restore -c alpine-astra-hook \
+    -a us.gcr.io -a eu.gcr.io
+{"metadata": {"labels": [], "creationTimestamp": "2023-01-27T15:53:10Z", "modificationTimestamp": "2023-01-27T15:53:10Z", "createdBy": "8146d293-d897-4e16-ab10-8dca934637ab"}, "type": "application/astra-executionHook", "version": "1.2", "id": "84e4fb3f-da86-4ea2-8c7a-08ccdfda6222", "name": "post-restore-image-rewrite", "hookType": "custom", "matchingCriteria": [{"type": "containerName", "value": "alpine-astra-hook"}], "action": "restore", "stage": "post", "hookSourceID": "02def8ea-acab-4216-8236-132d42ae0dda", "arguments": ["us.gcr.io", "eu.gcr.io"], "appID": "60c6990a-9d99-41a4-a7a5-3f8e19dff94e", "enabled": "true"}
 ```
 
 Validate that there's a container match:
