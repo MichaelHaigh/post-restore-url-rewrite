@@ -38,9 +38,29 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: us.gcr.io/google-containers/nginx
+        - image: 467886448844.dkr.ecr.eu-west-1.amazonaws.com/nginx
           imagePullPolicy: Always
           name: demo
           ports:
             - containerPort: 80
               name: demo
+          volumeMounts:
+          - mountPath: /data
+            name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: nginxdata
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginxdata
+  namespace: demo
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: ebs-sc
