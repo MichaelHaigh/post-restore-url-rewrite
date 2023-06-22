@@ -1,14 +1,14 @@
 #!/bin/sh
 
-REGION1="us.gcr.io"
-REGION2="eu.gcr.io"
+REGION1="467886448844.dkr.ecr.eu-west-1.amazonaws.com"
+REGION2="467886448844.dkr.ecr.eu-north-1.amazonaws.com"
 
 # Loop through non-"astra-hook-deployment" deployments
 deploys=$(kubectl get deployments -o json | jq -r '.items[].metadata | select(.name != "astra-hook-deployment") | .name')
 for d in ${deploys}; do
 
     # Loop through the containers within a deployment
-    containerNames=$(kubectl get deployment demo-deployment -o json | jq -r '.spec.template.spec.containers[].name')
+    containerNames=$(kubectl get deployment ${d} -o json | jq -r '.spec.template.spec.containers[].name')
     for c in ${containerNames}; do
 
         # Get the image and image region
